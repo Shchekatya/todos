@@ -1,4 +1,4 @@
-import {TextField, Button} from "@mui/material";
+import {TextField, ToggleButton,ToggleButtonGroup,Button} from "@mui/material";
 import {NavLink, Navigate, Outlet, useNavigate} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
@@ -36,25 +36,45 @@ const AddToDo = () => {
         navigate('/');
     }
 
+
+        const [alignment, setAlignment] = React.useState('all');
+      
+        const handleChange = (event, newAlignment) => {
+          setAlignment(newAlignment);
+        };
+
     
     return ( 
      <div className="todo-wrap">
      <header>
         <h1 className="todo-name">todos</h1>
+        </header> 
+        <div className="todo-wrap-list">
         <form onSubmit={submitToDo}>
-        <TextField id = "outlined-basic"        
-          variant = "outlined" 
+        <TextField 
+          className="todo-input"
+          id = "outlined-basic"        
+          variant="filled"
           placeholder='Task text' onChange={(e) => setText(e.target.value)}/>
-          </form>
-        </header>        
+          </form>              
         <main >
         < Outlet />
         </main> 
-        <footer>       
-        <Button variant="outlined" onClick={AllNavigate}>All</Button> 
-        <Button variant="outlined" onClick={ActiveNavigate}>Active</Button> 
-        <Button variant="outlined" onClick={CompleteNavigate}>Completed</Button>       
+        <footer>    
+        <span className="todo-left">2 items left</span>
+        <ToggleButtonGroup           
+            value={alignment}
+            exclusive
+            onChange={handleChange}
+            aria-label="Platform"
+        >   
+            <ToggleButton variant="text" value="all" onClick={AllNavigate} className="todo-button">All</ToggleButton> 
+            <ToggleButton value="active" onClick={ActiveNavigate} className="todo-button">Active</ToggleButton> 
+            <ToggleButton value="completed" onClick={CompleteNavigate} className="todo-button">Completed</ToggleButton>    
+        </ToggleButtonGroup>  
+        <Button variant="text" color="error">Clear completed</Button> 
         </footer>
+        </div>
      </div>
     )
 }

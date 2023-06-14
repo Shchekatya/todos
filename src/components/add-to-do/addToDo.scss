@@ -1,6 +1,42 @@
 .todo-wrap {
-    width: 500px;
+    width: 600px;
     background-color: rgb(238, 237, 235);
     margin: 0 auto;
     padding: 15px;
+    &-list {
+        background-color: #fff;  
+        outline: 1px solid grey;
+    }
+}
+
+.todo-input {
+    width: 100%;    
+    div {
+        background-color: #fff; 
+    }
+    input {
+        padding: 8px 16px;
+    }
+}
+
+main {
+    height: 20vh;
+    overflow: auto;
+}
+
+footer {
+    padding: 10px 16px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    .todo-left {
+        color: rgba(0, 0, 0, 0.54);
+    }
+    .todo-button {    
+            border: 0px solid rgba(0, 0, 0, 0.12);       
+            .Mui-selected {
+                border: 1px solid rgba(0, 0, 0, 0.12);
+            }
+    }
+   
 }

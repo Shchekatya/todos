@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ToDoLine from "../to-do-line/to-do-line";
 import {List, ListItem, Divider, Button} from "@mui/material";
 import { COMPLETE_TO_DO } from "../../redux/actions/action-todo";
+import './to-do-list.scss'
 
 const ToDoComplete = () => {
     const toDoArr = useSelector((state) => state.toDoReducer.todos);
@@ -15,8 +16,8 @@ const ToDoComplete = () => {
   
     return (   
       <>
-        <div className='todo-line'>
-          <List component="nav" aria-label="mailbox folders">
+      
+          <List >
            {toDoArr.length ? (toDoArr.filter(e => e.isCompleted===true).map((item)=>
             <>
               <ListItem button>
@@ -24,9 +25,9 @@ const ToDoComplete = () => {
               </ListItem>
               <Divider />
             </>
-            )) : (<div>Начните добавлять задачи и они появятся здесь</div>)}   
+            )) : (<div className="nothing-todo">Начните добавлять задачи и они появятся здесь</div>)}   
            </List>               
-        </div>
+ 
              
         </>
       );
