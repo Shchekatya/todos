@@ -11,11 +11,10 @@ import { useSelector } from "react-redux";
 
 
 export default function ToDoLine(props) {
-  const toDoArr = useSelector((state) => state.toDoReducer.todos);
-    console.log(props)
+  const toDoArr = useSelector((state) => state.toDoReducer.todos);    
   return (   
     <div className='checkbox'>
-      <input type="checkbox" id={props.id} className='checkbox-input'/> 
+      <input type="checkbox" id={props.id} className='checkbox-input' onChange={props.onChange} /> 
       <label for={props.id}>{props.item}</label> 
     </div>
   );

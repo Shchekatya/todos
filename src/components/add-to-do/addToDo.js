@@ -31,7 +31,7 @@ const AddToDo = () => {
         <h1 className="todo-name">todos</h1>
         <form onSubmit={submitToDo}>
         <TextField id = "outlined-basic"
-          label = "Outlined"
+        //   label = "Outlined"
           variant = "outlined" 
           placeholder='Task text' onChange={(e) => setText(e.target.value)}/>
           </form>
