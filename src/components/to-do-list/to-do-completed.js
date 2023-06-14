@@ -18,7 +18,7 @@ const ToDoComplete = () => {
       <>
       
           <List >
-           {toDoArr.length ? (toDoArr.filter(e => e.isCompleted===true).map((item)=>
+           {toDoArr.length ? (toDoArr.filter(e => e.isCompleted!=false).map((item)=>
             <>
               <ListItem button>
                 <ToDoLine item={item.text} id={item.id} onChange={toCompleted} isCompleted={item.isCompleted}/>

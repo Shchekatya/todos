@@ -1,6 +1,6 @@
 import {TextField, ToggleButton,ToggleButtonGroup,Button} from "@mui/material";
 import {NavLink, Navigate, Outlet, useNavigate} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 import React, { useState } from 'react';
 import './addToDo.scss'
 import { ADD_TO_DO,DELETE_COMPLETED } from "../../redux/actions/action-todo";
@@ -8,8 +8,10 @@ import { ADD_TO_DO,DELETE_COMPLETED } from "../../redux/actions/action-todo";
 const AddToDo = () => {
     const initialState='';
     const [text, setText] = useState(initialState);
+    const toDoArr = useSelector((state) => state.toDoReducer.todos);
     const dispatch=useDispatch();
     const navigate = useNavigate();
+    const activeLeft=toDoArr.filter(e=> e.isCompleted===false).length
     const submitToDo = (e) => {
         e.preventDefault()
         const toDoItem = {
@@ -67,7 +69,7 @@ const AddToDo = () => {
         < Outlet />
         </main> 
         <footer>    
-        <span className="todo-left">2 items left</span>
+        <span className="todo-left">{activeLeft} items left</span>
         <ToggleButtonGroup           
             value={alignment}
             exclusive

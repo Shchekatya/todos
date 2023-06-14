@@ -5,7 +5,8 @@ import { COMPLETE_TO_DO } from "../../redux/actions/action-todo";
 import './to-do-list.scss'
 
 
-const ToDoList = () => {
+const ToDoList = (props) => {
+  console.log(props)
     const toDoArr = useSelector((state) => state.toDoReducer.todos);
     const dispatch=useDispatch();
     console.log(toDoArr)
@@ -20,7 +21,7 @@ const ToDoList = () => {
       <>
        
           <List >
-           {toDoArr.length ? (toDoArr.map((item)=>
+          {toDoArr.length ? (toDoArr.map((item)=>
             <>
               <ListItem button>
                 <ToDoLine item={item.text} id={item.id} onChange={toCompleted} isCompleted={item.isCompleted}/>
