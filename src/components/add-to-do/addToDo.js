@@ -3,7 +3,7 @@ import {NavLink, Navigate, Outlet, useNavigate} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import './addToDo.scss'
-import { ADD_TO_DO } from "../../redux/actions/action-todo";
+import { ADD_TO_DO,DELETE_COMPLETED } from "../../redux/actions/action-todo";
 
 const AddToDo = () => {
     const initialState='';
@@ -18,7 +18,10 @@ const AddToDo = () => {
             isCompleted: false,
             text: text,       
         }
-        dispatch({ type: ADD_TO_DO, payload: toDoItem })  
+        if (text!=initialState) {
+            dispatch({ type: ADD_TO_DO, payload: toDoItem })  
+        }
+        
         e.target.reset();
         console.log(text);
         setText(initialState);     
@@ -36,6 +39,9 @@ const AddToDo = () => {
         navigate('/');
     }
 
+    const deleteCompleted=()=> {
+        dispatch({ type: DELETE_COMPLETED })  
+    }
 
         const [alignment, setAlignment] = React.useState('all');
       
@@ -72,7 +78,7 @@ const AddToDo = () => {
             <ToggleButton value="active" onClick={ActiveNavigate} className="todo-button">Active</ToggleButton> 
             <ToggleButton value="completed" onClick={CompleteNavigate} className="todo-button">Completed</ToggleButton>    
         </ToggleButtonGroup>  
-        <Button variant="text" color="error">Clear completed</Button> 
+        <Button variant="text" color="error" onClick={deleteCompleted}>Clear completed</Button> 
         </footer>
         </div>
      </div>

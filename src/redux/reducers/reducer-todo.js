@@ -1,4 +1,4 @@
-import { ADD_TO_DO, COMPLETE_TO_DO, UNCOMPLETE_TO_DO, DELETE_COMPLETED } from "../actions/action-todo"
+import { ADD_TO_DO, COMPLETE_TO_DO, DELETE_COMPLETED } from "../actions/action-todo"
 
 const initialState= {  
     todos: [],   
@@ -13,8 +13,7 @@ export const toDoReducer = (state = initialState, action) => {
                ...state, 
             todos: [...state.todos, action.payload]      
             }
-        case COMPLETE_TO_DO:    
-         
+        case COMPLETE_TO_DO:            
             return {
                ...state, 
             todos: state.todos.map(e=>{
@@ -23,6 +22,13 @@ export const toDoReducer = (state = initialState, action) => {
                 }
                 return e
             })      
+            }
+        case DELETE_COMPLETED:            
+            return {
+              ...state, 
+              todos: state.todos.filter(e=>
+                e.isCompleted===false           
+              )      
             }
        
             default:

@@ -15,8 +15,7 @@ const ToDoActive = () => {
     }
   
     return (   
-      <>
-  
+      <>  
           <List >
            {toDoArr.length ? (toDoArr.filter(e => e.isCompleted===false).map((item)=>
             <>
@@ -26,9 +25,7 @@ const ToDoActive = () => {
               <Divider />
             </>
             )) : (<div className="nothing-todo">Начните добавлять задачи и они появятся здесь</div>)}   
-           </List>               
-
-             
+           </List>          
         </>
       );
 }
