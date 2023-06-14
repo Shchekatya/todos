@@ -24,7 +24,6 @@ const AddToDo = () => {
         setText(initialState);     
     }
 
-
     
     return ( 
      <div className="todo-wrap">
