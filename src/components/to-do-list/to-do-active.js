@@ -3,22 +3,21 @@ import ToDoLine from "../to-do-line/to-do-line";
 import {List, ListItem, Divider, Button} from "@mui/material";
 import { COMPLETE_TO_DO } from "../../redux/actions/action-todo";
 
-const ToDoList = () => {
+const ToDoActive = () => {
     const toDoArr = useSelector((state) => state.toDoReducer.todos);
     const dispatch=useDispatch();
     console.log(toDoArr)
 
     const toCompleted=(e)=>{
-      const completedToDo=e.target;       
-        dispatch({ type: COMPLETE_TO_DO, payload: completedToDo.id}) 
-    } 
-
+      const completedToDo=e.target;   
+        dispatch({ type: COMPLETE_TO_DO, payload: completedToDo.id })  
+    }
   
     return (   
       <>
         <div className='todo-line'>
           <List component="nav" aria-label="mailbox folders">
-           {toDoArr.length ? (toDoArr.map((item)=>
+           {toDoArr.length ? (toDoArr.filter(e => e.isCompleted===false).map((item)=>
             <>
               <ListItem button>
                 <ToDoLine item={item.text} id={item.id} onChange={toCompleted} isCompleted={item.isCompleted}/>
@@ -27,9 +26,10 @@ const ToDoList = () => {
             </>
             )) : (<div>Начните добавлять задачи и они появятся здесь</div>)}   
            </List>               
-        </div>         
+        </div>
+             
         </>
       );
 }
 
-export default ToDoList
+export default ToDoActive

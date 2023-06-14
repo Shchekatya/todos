@@ -1,5 +1,5 @@
-import {TextField} from "@mui/material";
-import {NavLink, Outlet} from 'react-router-dom';
+import {TextField, Button} from "@mui/material";
+import {NavLink, Navigate, Outlet, useNavigate} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import React, { useState } from 'react';
 import './addToDo.scss'
@@ -9,7 +9,7 @@ const AddToDo = () => {
     const initialState='';
     const [text, setText] = useState(initialState);
     const dispatch=useDispatch();
-
+    const navigate = useNavigate();
     const submitToDo = (e) => {
         e.preventDefault()
         const toDoItem = {
@@ -24,14 +24,25 @@ const AddToDo = () => {
         setText(initialState);     
     }
 
+    function CompleteNavigate() {
+        navigate('/completed');
+      }
+
+    function ActiveNavigate() {
+        navigate('/active');
+    }
+
+    function AllNavigate() {
+        navigate('/');
+    }
+
     
     return ( 
      <div className="todo-wrap">
      <header>
         <h1 className="todo-name">todos</h1>
         <form onSubmit={submitToDo}>
-        <TextField id = "outlined-basic"
-        //   label = "Outlined"
+        <TextField id = "outlined-basic"        
           variant = "outlined" 
           placeholder='Task text' onChange={(e) => setText(e.target.value)}/>
           </form>
@@ -39,6 +50,11 @@ const AddToDo = () => {
         <main >
         < Outlet />
         </main> 
+        <footer>       
+        <Button variant="outlined" onClick={AllNavigate}>All</Button> 
+        <Button variant="outlined" onClick={ActiveNavigate}>Active</Button> 
+        <Button variant="outlined" onClick={CompleteNavigate}>Completed</Button>       
+        </footer>
      </div>
     )
 }
