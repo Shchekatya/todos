@@ -1,18 +1,26 @@
 import {TextField, ToggleButton,ToggleButtonGroup,Button} from "@mui/material";
 import {NavLink, Navigate, Outlet, useNavigate} from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState } from 'react';
-import './addToDo.scss'
+import React, { useState, SyntheticEvent } from 'react';
+import './add-to-do.scss'
 import { ADD_TO_DO,DELETE_COMPLETED } from "../../redux/actions/action-todo";
+import { useAppSelector, useAppDispatch } from "../../hooks"
+
+export interface ToDoItem {
+    id: number;
+    data: string;
+    isCompleted: boolean;
+    text: string;
+}
 
 const AddToDo = () => {
     const initialState='';
     const [text, setText] = useState(initialState);
-    const toDoArr = useSelector((state) => state.toDoReducer.todos);
-    const dispatch=useDispatch();
+    const toDoArr = useAppSelector((state) => state.toDoReducer.todos);
+    const dispatch=useAppDispatch();
     const navigate = useNavigate();
     const activeLeft=toDoArr.filter(e=> e.isCompleted===false).length
-    const submitToDo = (e) => {
+    const submitToDo = (e:SyntheticEvent) => {    
         e.preventDefault()
         const toDoItem = {
             id: Date.now(),
@@ -22,10 +30,7 @@ const AddToDo = () => {
         }
         if (text!=initialState) {
             dispatch({ type: ADD_TO_DO, payload: toDoItem })  
-        }
-        
-        e.target.reset();
-        console.log(text);
+        }   
         setText(initialState);     
     }
 
@@ -47,7 +52,8 @@ const AddToDo = () => {
 
         const [alignment, setAlignment] = React.useState('all');
       
-        const handleChange = (event, newAlignment) => {
+        const handleChange = (newAlignment:string) => {
+          console.log(alignment)
           setAlignment(newAlignment);
         };
 
@@ -63,6 +69,7 @@ const AddToDo = () => {
           className="todo-input"
           id = "outlined-basic"        
           variant="filled"
+          value={text}
           placeholder='Task text' onChange={(e) => setText(e.target.value)}/>
           </form>              
         <main >
@@ -73,10 +80,10 @@ const AddToDo = () => {
         <ToggleButtonGroup           
             value={alignment}
             exclusive
-            onChange={handleChange}
+            onChange={()=>handleChange}
             aria-label="Platform"
         >   
-            <ToggleButton variant="text" value="all" onClick={AllNavigate} className="todo-button">All</ToggleButton> 
+            <ToggleButton value="all" onClick={AllNavigate} className="todo-button">All</ToggleButton> 
             <ToggleButton value="active" onClick={ActiveNavigate} className="todo-button">Active</ToggleButton> 
             <ToggleButton value="completed" onClick={CompleteNavigate} className="todo-button">Completed</ToggleButton>    
         </ToggleButtonGroup>  

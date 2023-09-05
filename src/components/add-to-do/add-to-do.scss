@@ -20,8 +20,16 @@
 }
 
 main {
-    height: 20vh;
+    height: 23vh;
     overflow: auto;
+    &::-webkit-scrollbar {
+        width: 7px;
+        background-color: #f9f9fd;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #eeedeb;
+        border-radius: 4px;
+    }
 }
 
 footer {

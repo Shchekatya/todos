@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.scss';
-import AddToDo from './components/add-to-do/addToDo';
+import AddToDo from './components/add-to-do/add-to-do';
 import ToDoList from './components/to-do-list/to-do-list';
 import { Route, Routes } from 'react-router-dom';
 import ToDoComplete from './components/to-do-list/to-do-completed';
