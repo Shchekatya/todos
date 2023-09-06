@@ -7,11 +7,9 @@ import "./to-do-list.scss";
 
 const ToDoActive = () => {
   const toDoArr = useAppSelector((state) => state.toDoReducer.todos);
-  const dispatch = useAppDispatch();
-  console.log(toDoArr);
+  const dispatch = useAppDispatch(); 
 
   const toCompleted = (e: any) => {
-    console.log(e);
     const completedToDo = e.target;
     dispatch({ type: COMPLETE_TO_DO, payload: completedToDo.id });
   };

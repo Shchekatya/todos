@@ -4,14 +4,11 @@ import { COMPLETE_TO_DO } from "../../../redux/actions/action-todo";
 import { useAppSelector, useAppDispatch } from "../../../hooks";
 import "./to-do-list.scss";
 
-const ToDoList = (props: any) => {
-  console.log(props);
+const ToDoList = () => { 
   const toDoArr = useAppSelector((state) => state.toDoReducer.todos);
   const dispatch = useAppDispatch();
-  console.log(toDoArr);
 
-  const toCompleted = (e: any) => {
-    console.log(e);
+  const toCompleted = (e: any) => {   
     const completedToDo = e.target;
     dispatch({ type: COMPLETE_TO_DO, payload: completedToDo.id });
   };
