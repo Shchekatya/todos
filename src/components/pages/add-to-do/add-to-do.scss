@@ -7,6 +7,9 @@
         background-color: #fff;  
         outline: 1px solid grey;
     }
+    @media (max-width: 600px) {
+        width: 100%;
+      }
 }
 
 .todo-input {
@@ -46,5 +49,8 @@ footer {
                 border: 1px solid rgba(0, 0, 0, 0.12);
             }
     }
+    @media (max-width: 600px) {
+        flex-direction: column;
+      }
    
 }
