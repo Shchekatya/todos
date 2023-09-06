@@ -3,9 +3,9 @@
 ![app view](https://github.com/Shchekatya/todos/blob/main/screenshots/Screenshot_39.jpg)
 
 Используемые технологии: TypeScript, React, Redux, React Router, Material Ui
+
 Приложение покрыто тестами и доступно по ссылке https://todos-five-eta.vercel.app/
 
 
 Чтобы запустить приложение:
-1.  npm i
-2.  npm run start 
+1.  npm run dev 
